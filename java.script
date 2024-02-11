@@ -1,0 +1,21 @@
+script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('todoForm');
+        const input = document.getElementById('todoInput');
+        const list = document.getElementById('todoList');
+
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const todoText = input.value.trim();
+            if (todoText !== '') {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    ${todoText}
+                    <button class="delete-btn" onclick="this.parentNode.remove()">Delete</button>
+                `;
+                list.appendChild(listItem);
+                input.value = '';
+            }
+        });
+    });
+</script>

@@ -1,80 +1,107 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>shopcart</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>To-Do List</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 20px auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+    }
+
+    input[type="text"] {
+        width: calc(100% - 80px);
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 0 5px 5px 0;
+        cursor: pointer;
+    }
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    li:last-child {
+        border-bottom: none;
+    }
+
+    .delete-btn {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 3px;
+        cursor: pointer;
+        float: right;
+    }
+
+    .delete-btn:hover {
+        background-color: #d32f2f;
+    }
+</style>
 </head>
 <body>
-    <nav class="nav">
-        <div class="com">
-                shopcart.com
-        </div>
-        <div>
-            <ul>
-                <li>home</li>
-                <li>about</li>
-                <li>service</li>
-                <li id="cart" >contact</li>
-            </ul>
-        </div>
-    </nav>
-    <h1 >shop now our best products</h1>
-    <div class="image-box">
 
-        <div class="box1">
-            <div class="img0">
-               <img src="/assets/img1.png" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-            <div class="img0">
-               <img src="/assets/img2.jpg" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-            <div class="img0">
-               <img src="/assets/img3.jpg" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
+<div class="container">
+    <h1>To-Do List</h1>
+    <form id="todoForm">
+        <input type="text" id="todoInput" placeholder="Add new task..." required>
+        <input type="submit" value="Add">
+    </form>
+    <ul id="todoList"></ul>
+</div>
 
-            </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('todoForm');
+        const input = document.getElementById('todoInput');
+        const list = document.getElementById('todoList');
 
-        <div class="box1" id="box2">
-            <div class="img0">
-               <img src="/assets/img7.jpg" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-            <div class="img0">
-               <img src="/assets/img8.png" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-            <div class="img0">
-               <img src="/assets/img9.png" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
+        form.addEventListener('submit', function(event) {
+            event.preventDefault();
+            const todoText = input.value.trim();
+            if (todoText !== '') {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `
+                    ${todoText}
+                    <button class="delete-btn" onclick="this.parentNode.remove()">Delete</button>
+                `;
+                list.appendChild(listItem);
+                input.value = '';
+            }
+        });
+    });
+</script>
 
-            </div>
-
-        <div class="box1" id="box3">
-            <div class="img0">
-               <img src="/assets/img4.jpg" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-            <div class="img0">
-               <img src="/assets/img5.png" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-            <div class="img0">
-               <img src="/assets/img6.jpg" class="pht0" height="350px" width="350px">
-               <button class="codingbooks">Add to cart</button>
-            </div>
-
-            </div>
-    </div>
-    <div id="blank-container"><h1>cart items</h1> </div>
-
-   
-     
 </body>
-<script src="/aj.js"></script>
 </html>
